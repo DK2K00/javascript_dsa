@@ -33,6 +33,7 @@ class SinglyLinkedList {
     return this;
   }
 
+  //Function to remove element from end of list
   pop() {
     //Checking if list is empty
     if (!this.head) return undefined;
@@ -64,8 +65,9 @@ class SinglyLinkedList {
     return current;
   }
 
+  //Function to remove element from beginning of list
   shift() {
-    //Cehcking if list exists
+    //Checking if list exists
     if (!this.head) return undefined;
     //Storing head value to return
     let currentHead = this.head;
@@ -80,6 +82,7 @@ class SinglyLinkedList {
     return currentHead;
   }
 
+  //Function to add element to beginning of list
   unshift(val) {
     //Creating new node
     let newNode = new Node(val);
@@ -96,6 +99,34 @@ class SinglyLinkedList {
     console.log("Unshifted node: ", this);
     return this;
   }
+
+  //Function to get node at a particular index
+  get(index) {
+    //Checking if index is non-existing
+    if (index < 0 || index >= this.length) return null;
+    //Using counter to traverse through list
+    let counter = 0;
+    let current = this.head;
+    while (counter !== index) {
+      current = current.next;
+      counter++;
+    }
+    console.log("Get: ", current);
+    return current;
+  }
+
+  //Function to set value of node for particular index
+  set(index, val) {
+    //Getting value of node
+    let foundNode = this.get(index);
+    if (foundNode) {
+      //Changing value
+      foundNode.val = val;
+      console.log("Set", foundNode);
+      return true;
+    }
+    return false;
+  }
 }
 
 let list = new SinglyLinkedList();
@@ -106,3 +137,5 @@ list.push("Bro!!!");
 list.pop();
 list.shift();
 list.unshift("How's");
+list.get(2);
+list.set(2, "dude!");
