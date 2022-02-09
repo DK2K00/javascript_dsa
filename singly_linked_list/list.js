@@ -121,9 +121,10 @@ class SinglyLinkedList {
     if (foundNode) {
       //Changing value
       foundNode.val = val;
-      console.log("Set", foundNode);
+      console.log("Set: ", this);
       return true;
     }
+    console.log("Set not found");
     return false;
   }
 
@@ -200,8 +201,10 @@ list.push("Bro!!!");
 list.pop();
 list.shift();
 list.unshift("How's");
-list.get(3);
-list.set(3, "dude!");
+list.get(2);
+list.set(2, "doing that");
 list.print();
-list.insert(4, "Nice to meet you");
+list.insert(3, "bro!!!");
 list.remove(0);
+list.reverse();
+list.print();
