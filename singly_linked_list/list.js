@@ -92,8 +92,8 @@ class SinglyLinkedList {
       this.tail = this.head;
     }
     //Else inserting node at the beginning and assigning it as head
-      newNode.next = this.head;
-      this.head = newNode;
+    newNode.next = this.head;
+    this.head = newNode;
     this.length += 1;
     console.log("Unshifted node: ", this);
     return this;
@@ -128,15 +128,15 @@ class SinglyLinkedList {
   }
 
   //Function to insert node in any position
-  insert(index,val){
+  insert(index, val) {
     //Edge cases
-    if(index < 0 || index > this.index) return false;
-    if(index === 0) return !!this.unshift(val);
-    if(index === this.length) return !!this.push(val);
+    if (index < 0 || index > this.index) return false;
+    if (index === 0) return !!this.unshift(val);
+    if (index === this.length) return !!this.push(val);
 
     let newNode = new Node(val);
     //Getting previous node from index
-    let prev = this.get(index-1);
+    let prev = this.get(index - 1);
     //Storing the next value of previous node and swapping
     let temp = prev.next;
     prev.next = newNode;
@@ -144,6 +144,21 @@ class SinglyLinkedList {
 
     this.length++;
     return true;
+  }
+
+  //Function to remove a node from list
+  remove(index) {
+    //Edge cases
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+    //getting previous node
+    let prevNode = this.get(index - 1);
+    //Temporary variable to remove connection
+    let removed = prevNode.next;
+    prevNode.next = removed.next;
+    this.length--;
+    return removed;
   }
 }
 
@@ -157,4 +172,5 @@ list.shift();
 list.unshift("How's");
 list.get(2);
 list.set(2, "dude!");
-list.insert(4,"Nice to meet you");
+list.insert(4, "Nice to meet you");
+list.remove(0);
