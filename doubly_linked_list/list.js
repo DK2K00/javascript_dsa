@@ -30,11 +30,33 @@ class DoublyLinkedList {
     }
 
     this.length++;
-    console.log(this);
+    console.log("Push: ", this);
     return this;
   }
-}
 
+  //Function to remove last element in the list
+  pop() {
+    //Checking if list exists
+    if (!this.head) return undefined;
+    let poppedNode = this.tail;
+
+    //If only single element exists
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+      //Changing pointers
+    } else {
+      this.tail = poppedNode.prev;
+      this.tail.next = null;
+      poppedNode.prev = null;
+    }
+    this.length++;
+    console.log("Pop: ", poppedNode);
+    return poppedNode;
+  }
+}
 let list = new DoublyLinkedList();
 list.push(10);
 list.push(20);
+list.push(30);
+list.pop();
