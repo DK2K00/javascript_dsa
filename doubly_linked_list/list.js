@@ -77,10 +77,10 @@ class DoublyLinkedList {
   }
 
   //Function to add a node to the beginning of the list
-  unshift(val){
+  unshift(val) {
     let newNode = new Node(val);
     //If list is empty, setting head and tail as the new node
-    if(this.length === 0){
+    if (this.length === 0) {
       this.head = newNode;
       this.tail = newNode;
       //Else adding the new node and changing the pointers
@@ -95,6 +95,53 @@ class DoublyLinkedList {
     console.log(this);
     return this;
   }
+
+  //Function to get value of a particular index
+  get(index) {
+    //Edge case
+    if (index < 0 || index >= this.length){
+      console.log("Invalid index for get");
+      return null;
+    } 
+    let count, current;
+
+    //Checking if index is closer to head or tail
+    //to maximise efficiency
+    if (index < this.length / 2) {
+      count = 0;
+      current = this.head;
+      //Going forward from head
+      while (count !== index) {
+        current = current.next;
+        count++;
+      }
+    } else {
+      count = this.length - 1;
+      current = this.tail;
+      //Going backward from tail
+      while (count !== index) {
+        current = current.prev;
+        count--;
+      }
+    }
+    console.log("Get: ", current);
+    return current;
+  }
+
+  //Function to change value for particular index
+  set(index,val){
+    //Getting the node
+    let foundNode = this.get(index);
+    //Changing value if found
+    if(foundNode != null){
+      foundNode.val = val;
+      console.log("Set: ",foundNode);
+      return true;
+    }
+    //Returning false if not found
+    console.log("Node not found for set");
+    return false;
+  }
 }
 
 let list = new DoublyLinkedList();
@@ -104,3 +151,9 @@ list.push(30);
 list.pop();
 list.unshift(0);
 list.shift();
+list.push(40);
+list.push(50);
+list.push(60);
+list.get(3);
+list.set(2,30);
+list.set(-1,0);
