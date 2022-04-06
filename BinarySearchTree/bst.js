@@ -30,8 +30,10 @@ class BST {
     //Continuously traversing
     while (true) {
       //Checking if value repeats
-      if ((value = current.value)) return undefined;
-
+      if (value === current.value) {
+        console.log(value, " is repeated");
+        return undefined;
+      }
       //If value is less than parent go left
       if (value < current.value) {
         if (current.left === null) {
@@ -57,7 +59,7 @@ class BST {
   //Returning node after searching
   find(value) {
     if (this.root === null) return false;
-    var current = this.root,
+    let current = this.root,
       found = false;
     while (current && !found) {
       if (value < current.value) {
@@ -75,7 +77,7 @@ class BST {
   //Checking if node exists inside tree
   contains(value) {
     if (this.root === null) return false;
-    var current = this.root,
+    let current = this.root,
       found = false;
     while (current && !found) {
       if (value < current.value) {
